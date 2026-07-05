@@ -1,0 +1,23 @@
+# Python environment & cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+
+# SQLite local databases
+*.db
+backend/database/careerpilot.db
+
+# Node.js dependencies & builds
+node_modules/
+dist/
+.eslintcache
+
+# Local IDEs
+.vscode/
+.idea/
+.DS_Store
