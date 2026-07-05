@@ -1,117 +1,216 @@
-# CareerPilot AI - Premium Full-Stack AI Career Concierge 🚀
+# CareerPilot AI 🚀
 
-CareerPilot AI is a production-quality, secure personal career assistant designed for students and job seekers. Built on the **Google Agent Development Kit (ADK)** and Gemini 2.5, it automates resume parsing, job matching, mock interview preparation, and job application tracking—all inside a modern, glassmorphic SaaS-style web interface.
+### AI-Powered Career Concierge Built with Google ADK & Gemini 2.5
 
----
-
-## 🖥️ User Interface Preview
-
-Here is a visual preview of the premium dark-themed CareerPilot AI dashboard, featuring navigation tabs, stats widgets, and the real-time Agent Activity feed:
-
-![CareerPilot AI Live Dashboard](assets/dashboard_live.png)
+<p align="center">
+A production-ready full-stack AI platform that helps students and job seekers optimize resumes, match jobs intelligently, prepare for interviews, and manage their application pipeline—all from a modern web dashboard.
+</p>
 
 ---
 
-## 🔄 Core Workflows
+## ✨ Overview
 
+CareerPilot AI combines multiple AI agents into a unified career assistant capable of analyzing resumes, evaluating ATS compatibility, matching candidates with job descriptions, generating personalized learning roadmaps, conducting mock interviews, and tracking job applications in real time.
+
+The platform is designed with a modern React interface, a FastAPI backend, Google Agent Development Kit (ADK), Gemini 2.5, and SQLite for persistent storage.
+
+---
+
+## 📸 Dashboard Preview
+
+![CareerPilot AI Dashboard](assets/dashboard_live.png)
+
+---
+
+## ✨ Key Features
+
+* 📄 AI Resume Parsing (PDF & DOCX)
+* 🎯 ATS Resume Analysis & Scoring
+* ✍️ Resume Bullet Improvement Suggestions
+* 🤖 Semantic Job Matching
+* 📚 Personalized Skill Gap Analysis & Learning Roadmap
+* 💬 AI-Powered Mock Interviews
+* ⭐ Interview Evaluation & STAR-Based Feedback
+* 📌 Job Application Pipeline Tracker
+* 📊 Real-Time Dashboard Analytics
+* 🗃 SQLite Database Persistence
+* 🔐 Secure File Upload Validation
+* ⚡ Google ADK Multi-Agent Orchestration
+* 🌙 Premium Glassmorphism UI
+
+---
+
+## 🏗 System Architecture
+
+```text
+               React + Tailwind Dashboard
+                         │
+                         ▼
+                 FastAPI REST Backend
+                         │
+         ┌───────────────┼───────────────┐
+         ▼               ▼               ▼
+ Resume Agent      Job Match Agent   Interview Agent
+         │               │               │
+         └───────────────┼───────────────┘
+                         ▼
+                  Tracker Agent
+                         │
+                         ▼
+                  SQLite Database
 ```
-  User Uploads Resume
-          │
-          ▼
-┌───────────────────────────────┐
-│     Resume Agent (ADK)        │ ──► ATS Analysis & Score (Persisted in DB)
-└───────────────────────────────┘
-          │
-          ├─────────────────────────────────────────────────┐
-          ▼                                                 ▼
-┌───────────────────────────────┐                 ┌───────────────────────────────┐
-│    Job Match Agent (ADK)      │                 │     Interview Agent (ADK)     │
-├───────────────────────────────┤                 ├───────────────────────────────┤
-│ • Paste Job Requirements      │                 │ • Generate Role QA            │
-│ • Calculate Semantic Score    │                 │ • Submit Answers              │
-│ • Map Skill gaps & Roadmap    │                 │ • Grading (Score out of 10)   │
-└───────────────────────────────┘                 └───────────────────────────────┘
-          │                                                 │
-          └────────────────────────┬────────────────────────┘
-                                   ▼
-                        ┌─────────────────────────┐
-                        │   Tracker Agent (ADK)   │
-                        ├─────────────────────────┤
-                        │ • Log Job Applications  │ ──► Saved to SQLite db
-                        │ • Update Status Board   │
-                        └─────────────────────────┘
+
+---
+
+## 🔄 Workflow
+
+1. Upload Resume
+2. Resume Agent extracts and analyzes content.
+3. ATS score is generated.
+4. User pastes a Job Description.
+5. Job Match Agent calculates semantic alignment.
+6. Skill gaps and learning roadmap are created.
+7. Interview Agent generates personalized interview questions.
+8. Candidate answers are evaluated.
+9. Tracker Agent stores all reports and applications.
+10. Dashboard updates automatically.
+
+---
+
+## 🛠 Tech Stack
+
+| Category     | Technologies               |
+| ------------ | -------------------------- |
+| Frontend     | React, Vite, Tailwind CSS  |
+| Backend      | FastAPI                    |
+| AI Framework | Google ADK                 |
+| LLM          | Gemini 2.5 Flash           |
+| Database     | SQLite, SQLAlchemy         |
+| File Parsing | MCP Filesystem Server      |
+| Language     | Python                     |
+| Deployment   | Ready for Cloud Deployment |
+
+---
+
+## 📂 Project Structure
+
+```text
+CareerPilot-AI/
+│
+├── frontend/
+├── backend/
+├── agents/
+├── uploads/
+├── assets/
+├── database/
+├── main.py
+├── requirements.txt
+├── run.ps1
+├── run
+└── README.md
 ```
 
-1. **ATS Resume Scanner & Bullet Rewrite**:
-   - The user uploads a resume file (`.pdf` or `.docx`).
-   - The **Resume Agent** parses text securely via MCP, grades overall ATS compatibility, and produces metric-driven bullet-point rewrites.
-2. **Semantic Job Alignment & learning Roadmap**:
-   - The user pastes target job requirements.
-   - The **Job Match Agent** performs semantic comparisons, identifies missing skills (gaps), and drafts a customized learning path.
-3. **Role-Specific Mock Interview prep**:
-   - The **Interview Agent** designs custom questions matching the candidate's resume and target role difficulty.
-   - It grades responses out of 10 and gives feedback mapped to the STAR method structure.
-4. **SQLite Pipeline Tracker**:
-   - The **Tracker Agent** updates application statuses, logs deadlines, and syncs dashboard statistics in real time.
+---
+
+## 🗄 Database
+
+The application stores persistent information in SQLite.
+
+### Tables
+
+* users
+* resume_reports
+* job_matches
+* interview_history
+* applications
 
 ---
 
-## 🏗️ System Architecture
+## 🔐 Security
 
-CareerPilot AI is built as a single-port full-stack web application:
-- **Frontend**: Vite + React + TailwindCSS (Compiled static assets served at the root).
-- **Backend**: FastAPI REST API + SQLite (SQLAlchemy) + Google ADK Orchestration.
-- **MCP filesystem Server**: Stdio-based subprocess verifying sandbox boundaries.
-
----
-
-## 🗄️ Database Schemas (SQLite)
-
-- **`users`**: Profiles (Guest candidate default).
-- **`applications`**: Job applications pipeline (Company, Role, Status, Salary, Deadline, Notes).
-- **`interview_history`**: Past generated questions, candidate answers, scores (1-10), and feedback.
-- **`resume_reports`**: ATS scanner history, scores, and markdown suggestions.
-- **`job_matches`**: Job alignments, scores, roadmaps, and tailored summaries.
+* PDF and DOCX validation
+* Maximum upload size protection
+* Directory traversal prevention
+* Prompt injection isolation
+* Structured agent communication
+* Audit logging
+* Local sandbox execution
 
 ---
 
-## 🔒 Security Architectures
+## 🚀 Getting Started
 
-1. **Document Sandbox**: Extracted files are checked for type (`.pdf` and `.docx` only), size (<5MB), and normalized strictly within the local `uploads/` folder to prevent directory traversal.
-2. **Anti-Injection parameters**: Inputs are passed using structured parameters, isolating resume text from agent persona instructions.
-3. **Audit Log Feed**: Displays the real-time agent orchestration workflow inside the UI's **Agent Activity Panel**.
+### Prerequisites
 
----
+* Python 3.10+
+* Node.js (optional for frontend development)
+* Gemini API Key
 
-## 🚀 How to Run Locally
+### Configure Environment
 
-### 1. Prerequisites
-- Python 3.10+ installed.
-- Node.js & npm installed (Optional, only needed if modifying frontend code).
-- A valid **Gemini API Key** from [Google AI Studio](https://aistudio.google.com/).
+Create a `.env` file.
 
-### 2. Environment Configuration
-Create a `.env` file at the root:
 ```env
-GEMINI_API_KEY=your_gemini_api_key_here
+GEMINI_API_KEY=YOUR_API_KEY
 GEMINI_MODEL=gemini-2.5-flash
 ```
 
-### 3. Start the Web Server
-Execute our pre-mapped executable scripts or python launcher directly:
+### Install Dependencies
 
-- **Using Command Prompt (`cmd`):**
-  ```cmd
-  run
-  ```
-- **Using PowerShell:**
-  ```powershell
-  .\run.ps1
-  ```
-- **Using Python directly:**
-  ```bash
-  python main.py
-  ```
+```bash
+pip install -r requirements.txt
+```
 
-This initializes the database, creates all schemas, mounts the React dashboard, and launches the web platform.
-👉 Open your browser to: **[http://localhost:8000](http://localhost:8000)**
+### Run
+
+Windows CMD
+
+```cmd
+run
+```
+
+PowerShell
+
+```powershell
+.\run.ps1
+```
+
+Python
+
+```bash
+python main.py
+```
+
+Open
+
+```text
+http://localhost:8000
+```
+
+---
+
+## 📌 Future Enhancements
+
+* Multi-user authentication
+* Email notifications
+* Resume version comparison
+* Recruiter dashboard
+* AI career coach chat
+* Calendar integration
+* Cloud database support
+* Docker deployment
+* CI/CD pipeline
+
+---
+
+## 💡 Why This Project?
+
+CareerPilot AI demonstrates modern software engineering practices by combining AI orchestration, full-stack web development, secure file handling, REST APIs, persistent storage, and a responsive user experience into a single production-style application.
+
+---
+
+## 👨‍💻 Author
+
+**Lokesh Alasandi**
+
+If you found this project useful, consider giving it a ⭐ on GitHub.
