@@ -8,7 +8,7 @@ CareerPilot AI is a production-quality, secure personal career assistant designe
 
 Here is a visual preview of the premium dark-themed CareerPilot AI dashboard, featuring navigation tabs, stats widgets, and the real-time Agent Activity feed:
 
-![CareerPilot AI Dashboard Mockup](assets/dashboard_mockup.png)
+![CareerPilot AI Live Dashboard](assets/dashboard_live.png)
 
 ---
 
